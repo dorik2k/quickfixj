@@ -33,6 +33,10 @@ abstract class AbstractLog implements Log, Closeable {
         if (!logHeartbeats && MessageUtils.isHeartbeat(message)) {
             return;
         }
+        
+        // remove pass from string
+        message = message.replaceAll("(?<=554=)[0-9a-zA-Z\\*\\.\\!\\@\\#\\$\\%\\^\\&\\(\\)\\{\\}\\[\\]\\:\\;\\<\\>\\,\\.\\?\\/\\~\\_\\+\\-\\=\\|\\\\]*", "encryptedpass");
+        
         logIncoming(message);
     }
 
@@ -42,6 +46,10 @@ abstract class AbstractLog implements Log, Closeable {
         if (!logHeartbeats && MessageUtils.isHeartbeat(message)) {
             return;
         }
+        
+        // remove pass from string
+        message = message.replaceAll("(?<=554=)[0-9a-zA-Z\\*\\.\\!\\@\\#\\$\\%\\^\\&\\(\\)\\{\\}\\[\\]\\:\\;\\<\\>\\,\\.\\?\\/\\~\\_\\+\\-\\=\\|\\\\]*", "encryptedpass");
+        
         logOutgoing(message);
     }
 
